@@ -117,13 +117,23 @@ PHP_FUNCTION(periphery_serial_open)
   int ret;
   int qarg;
 
-  ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 2, 5)
+  /* Default settings of optional arguments */
+  databits = 8;
+  parity = PARITY_NONE;
+  stopbits = 1;
+  xonxoff = 0;
+  rtscts = 0;
+
+  ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 2, 8)
     Z_PARAM_ZVAL(zserial)
     Z_PARAM_STR(zdevice)
     Z_PARAM_OPTIONAL
     Z_PARAM_LONG(baudrate)
     Z_PARAM_LONG(databits)
     Z_PARAM_STR(zparity)
+    Z_PARAM_LONG(stopbits)
+    Z_PARAM_BOOL(xonxonff)
+    Z_PARAM_BOOL(rtscts)
   ZEND_PARSE_PARAMETERS_END();
 
   // Baudrate control
@@ -147,13 +157,6 @@ PHP_FUNCTION(periphery_serial_open)
 
   serial = periphery_serial_fetch_resource(zserial, return_value TSRMLS_CC);
 
-  /* Default settings of optional arguments */
-  databits = 8;
-  parity = PARITY_NONE;
-  stopbits = 1;
-  xonxoff = 0;
-  rtscts = 0;
-
   if ((ret = serial_open_advanced(serial, ZSTR_VAL(zdevice), baudrate, databits, parity, stopbits, xonxoff, rtscts)) < 0) {
     RETVAL_FALSE;
   }
@@ -172,7 +175,9 @@ PHP_FUNCTION(periphery_serial_close)
 
   serial = periphery_serial_fetch_resource(zserial, return_value TSRMLS_CC);
 
-  if ((ret = serial_close(serial)) < 0) RETVAL_FALSE;
+  if ((ret = serial_close(serial)) < 0) {
+    RETVAL_FALSE;
+  }
 
   RETVAL_TRUE;
 }
