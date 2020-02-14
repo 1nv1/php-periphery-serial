@@ -2,6 +2,10 @@
 
 A php extension for peripheral I/O Serial in GNU/Linux.
 
+## Warning
+
+This project isn't yet useful. The commits are a backup process only.
+
 ## Introduction
 
 The goal of this project is build a wrapper (serial I/O) of [c-periphery](https://github.com/vsergeev/c-periphery)
