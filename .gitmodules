@@ -1,0 +1,3 @@
+[submodule "c-periphery"]
+	path = c-periphery
+	url = ./c-periphery/
