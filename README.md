@@ -22,7 +22,7 @@ You need apply the following steps:
 
 ```
 # phpize
-# ./configure --enable-periphery
+# ./configure --enable-periphery_serial
 # make
 # make install
 ```
