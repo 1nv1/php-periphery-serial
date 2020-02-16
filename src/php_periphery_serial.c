@@ -113,8 +113,8 @@ PHP_FUNCTION(periphery_serial_open)
   int databits;
   serial_parity_t parity;
   int stopbits;
-  bool xonxoff;
-  bool rtscts;
+  int xonxoff;
+  int rtscts;
   int ret;
   int qarg;
 
@@ -133,8 +133,8 @@ PHP_FUNCTION(periphery_serial_open)
     Z_PARAM_LONG(databits)
     Z_PARAM_STR(zparity)
     Z_PARAM_LONG(stopbits)
-    Z_PARAM_BOOL(xonxonff)
-    Z_PARAM_BOOL(rtscts)
+    Z_PARAM_LONG(xonxoff)
+    Z_PARAM_LONG(rtscts)
   ZEND_PARSE_PARAMETERS_END();
 
   // Baudrate control
