@@ -18,6 +18,7 @@ zend_function_entry periphery_serial_functions[] = {
   PHP_FE(periphery_serial_init, NULL)
   PHP_FE(periphery_serial_open, NULL)
   PHP_FE(periphery_serial_read, NULL)
+  PHP_FE(periphery_serial_flush, NULL)
   PHP_FE(periphery_serial_close, NULL)
   PHP_FE(periphery_serial_version, NULL)
   PHP_FE_END
@@ -198,6 +199,25 @@ PHP_FUNCTION(periphery_serial_read)
   array_init(return_value);
   for (int i = 0; i < ret; i++) add_index_long(return_value, i, buf[i]);
   return;
+}
+
+PHP_FUNCTION(periphery_serial_flush)
+{
+  zval *zserial;
+  serial_t *serial;
+  int ret;
+
+  if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "r", &zserial) == FAILURE) {
+    RETVAL_FALSE;
+  }
+
+  serial = periphery_serial_fetch_resource(zserial, return_value TSRMLS_CC);
+
+  if ((ret = serial_flush(serial)) < 0) {
+    RETVAL_FALSE;
+  }
+
+  RETVAL_TRUE;
 }
 
 PHP_FUNCTION(periphery_serial_close)
