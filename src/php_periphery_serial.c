@@ -180,7 +180,7 @@ PHP_FUNCTION(periphery_serial_read)
   /* Default settings of optional arguments */
   timeout_ms = -1;
   length = 0;
-  len = 0;
+  len = sizeof(char);
 
   ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 3)
     Z_PARAM_ZVAL(zserial)
@@ -189,16 +189,21 @@ PHP_FUNCTION(periphery_serial_read)
     Z_PARAM_LONG(timeout_ms)
   ZEND_PARSE_PARAMETERS_END();
 
-  if (length) { len = length; }
+  if (length) { len = length * len; }
 
   serial = periphery_serial_fetch_resource(zserial, return_value TSRMLS_CC);
 
-  if ((ret = serial_read(serial, buf, len, timeout_ms)) <= 0) {
+  ret = serial_read(serial, buf, len, timeout_ms);
+
+  if (ret < 0) {
     RETURN_NULL();
   }
 
   array_init(return_value);
-  for (int i = 0; i < ret; i++) add_index_long(return_value, i, buf[i]);
+  for (int i = 0; i < ret; i++) {
+    add_index_long(return_value, i, 0xFF & buf[i]);
+  }
+  php_printf("\n");
   return;
 }
 
@@ -209,7 +214,7 @@ PHP_FUNCTION(periphery_serial_write)
   HashPosition pos;
   zval *input;
   zval *arr;
-  char *buf;
+  char *buf, *bufi, *buft;
   int len;
   serial_t *serial;
   int ret;
@@ -226,17 +231,23 @@ PHP_FUNCTION(periphery_serial_write)
   serial = periphery_serial_fetch_resource(zserial, return_value TSRMLS_CC);
 
   for (
-    zend_hash_internal_pointer_reset_ex(arr_hash, &pos);
+    zend_hash_internal_pointer_reset_ex(arr_hash, &pos), i = 0;
     (arr = zend_hash_get_current_data_ex(arr_hash, &pos)) != NULL;
-    zend_hash_move_forward_ex(arr_hash, &pos)
+    zend_hash_move_forward_ex(arr_hash, &pos), i++, buf++
   ) {
     if (Z_TYPE_P(arr) == IS_STRING) {
-      buf = strdup(Z_STRVAL_P(arr));
+      buft = strdup(Z_STRVAL_P(arr));
+      *buf = buft[0];
+    }
+    else if (Z_TYPE_P(arr) == IS_LONG) {
+      buf = Z_STRVAL_P(arr);
     } else {
       RETVAL_FALSE;
     }
-    buf++;
+    if (i == 0) { bufi = buf; }
   }
+  *buf = '\0';
+  buf = bufi;
 
   if ((ret = serial_write(serial, buf, len)) < 0) {
     RETVAL_FALSE;
