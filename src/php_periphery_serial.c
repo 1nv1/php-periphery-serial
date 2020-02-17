@@ -171,7 +171,7 @@ PHP_FUNCTION(periphery_serial_read)
   zval retval;
   zval *zserial;
   serial_t *serial;
-  char *buf;
+  static char buf[256];
   int timeout_ms;
   size_t len;
   int length;
