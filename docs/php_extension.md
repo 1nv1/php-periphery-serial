@@ -19,6 +19,7 @@ without any knowledge about this and I used this list to work.
   + [PHP Extension Dynamic Resource](https://gist.github.com/hjanuschka/3ed54e66f017a379cf25) - Gist
 * Projects
   * [hdrhistogram-php](https://github.com/beberlei/hdrhistogram-php) - A PHP extension wrapper for the C hdrhistogram API.
+  * [libvirt](https://www.redhat.com/archives/libvir-list/2016-April/msg00415.html) - libvirt-php PATCH 13/35] buildable with PHP 7.
 * PHP internals
   * [Internal value representation](https://nikic.github.io/2015/05/05/Internal-value-representation-in-PHP-7-part-1.html) - My last article described the improvements to the hashtable implementation that were introduced in PHP 7.
   * [Functions definitions](https://nikic.github.io/2012/03/16/Understanding-PHPs-internal-function-definitions) - Understanding PHP's internal function definitions (PHP's Source Code for PHP Developers - Part 2).
