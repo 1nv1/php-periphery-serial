@@ -203,7 +203,7 @@ PHP_FUNCTION(periphery_serial_read)
   for (int i = 0; i < ret; i++) {
     add_index_long(return_value, i, 0xFF & buf[i]);
   }
-  php_printf("\n");
+
   return;
 }
 
