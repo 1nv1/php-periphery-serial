@@ -26,3 +26,4 @@ without any knowledge about this and I used this list to work.
   * [Zend resource](http://www.phpinternalsbook.com/php7/internal_types/zend_resources.html) - The Resource type: zend_resource.
 * PHP code internals
   * [Zend API](https://github.com/php/php-src/blob/master/Zend/zend_API.h)
+  * [Hastable API](http://www.phpinternalsbook.com/php5/hashtables/hashtable_api.html)
