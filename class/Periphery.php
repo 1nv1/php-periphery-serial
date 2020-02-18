@@ -52,4 +52,9 @@ class Serial {
     return $this->res;
   }
 
+  public function version()
+  {
+    return periphery_serial_version();
+  }
+
 }
