@@ -7,8 +7,8 @@ class Serial {
   private $serial;
   private $res;
   private $device;
-  private $baudrate;
-  private $timeout_ms;
+  private $baudrate = 9600;
+  private $timeout_ms = 500;
   private $output;
 
   public function __construct()
@@ -27,9 +27,9 @@ class Serial {
     return $this->res;
   }
 
-  public function read($len, $timeout_ms = 500)
+  public function read($len, $timeout_ms)
   {
-    $this->timeout_ms = $timeout_ms;
+    $timeout_ms = !empty($timeout_ms) ? $this->timeout_ms : $timeout_ms;
     $this->output = periphery_serial_read($this->serial, $len, $timeout_ms);
     return $this->output;
   }
