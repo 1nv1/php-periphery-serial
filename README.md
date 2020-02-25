@@ -2,10 +2,6 @@
 
 A php extension for peripheral I/O Serial in GNU/Linux.
 
-## Warning
-
-This project isn't yet useful. The commits are a backup process only.
-
 ## Introduction
 
 The goal of this project is build a wrapper (serial I/O) of [c-periphery](https://github.com/vsergeev/c-periphery)
@@ -15,6 +11,10 @@ library.
 
 This project really has two goal, the first is create a wrapper and the second
 is learn about php extensions. It's my first project around this.
+
+Right now I uploaded to sourceforge two compilations of the extension. One is
+for x86_64 target system and the other was build on a x86.
+The last one was tested with real electronics hardware without problems.
 
 # Download
 
