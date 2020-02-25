@@ -58,6 +58,12 @@ class Serial {
     return $this->output;
   }
 
+  public function output_waiting()
+  {
+    $this->output = periphery_serial_output_waiting($this->serial);
+    return $this->output;
+  }
+
   public function close()
   {
     $this->res = periphery_serial_close($this->serial);
