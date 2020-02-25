@@ -21,8 +21,13 @@ The last one was tested with real electronics hardware without problems.
 - [x] Public attributes
 - [x] Testing arguments
 - [ ] Test again over real hardware (x86/x86_64)
-- [ ] Documentation of class
+- [x] Documentation of class
 - [ ] I will keep uploading compiled versions
+- [ ] Errors support
+
+# Documentation
+
+You can access to documentation to class in this [link](docs/class_serial.md).
 
 # Download
 
