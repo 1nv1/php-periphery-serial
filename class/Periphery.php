@@ -6,14 +6,15 @@ class Serial {
 
   private $serial;
   private $res;
-  private $device;
-  private $baudrate;
-  private $parity;
-  private $stopbits;
-  private $xonxoff;
-  private $rtscts;
   private $timeout_ms = 500;
   private $output;
+
+  public $device;
+  public $baudrate;
+  public $parity;
+  public $stopbits;
+  public $xonxoff;
+  public $rtscts;
 
   private function _testRange($v, $va, $vb)
   {
