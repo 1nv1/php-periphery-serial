@@ -32,6 +32,7 @@ PHP_FUNCTION(periphery_serial_read);
 PHP_FUNCTION(periphery_serial_write);
 PHP_FUNCTION(periphery_serial_poll);
 PHP_FUNCTION(periphery_serial_flush);
+PHP_FUNCTION(periphery_serial_input_waiting);
 PHP_FUNCTION(periphery_serial_close);
 PHP_FUNCTION(periphery_serial_version);
 
