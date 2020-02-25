@@ -31,6 +31,49 @@ You need apply the following steps:
 # make install
 ```
 
+# Example
+
+This is a simple example:
+
+```php
+
+<?php
+
+// Class for use periphery-serial
+require_once dirname(__FILE__).$relative_path_to."Periphery.php";
+
+// Create an instance
+$pb = new Periphery\Serial(); 
+
+// Yo can see the version of c-periphery embedded
+echo "Version: ".$pb->version().PHP_EOL;
+
+// Now, open the serial port: path to device and baudrate
+$res = $pb->open("/dev/ttyUSB0", 38400) ? 'yes' : 'no';
+if ($res == 'no') {
+  echo "Error at open!".PHP_EOL;
+  die();
+}
+echo "Open: yes".PHP_EOL;
+
+echo "Flush...".PHP_EOL;
+$pb->flush();
+
+// Take the "string" to send and convert it in array
+$send = str_split("RP");
+echo "Write: ".$pb->write($send, 2).PHP_EOL;
+echo "Read: ";
+
+// Do you need wait 30 bytes response with a 2 senconds of timeout?
+$res = $pb->read(30, 2000);
+if (!empty($res)) { var_dump($res); }
+else { echo PHP_EOL; }
+
+// You expects 30 bytes with a 2 senconds of timeout
+echo "Close: ".($pb->close() ? 'yes' : 'no').PHP_EOL;
+
+```
+
 # License
 
 php-periphery-serial is MIT licensed. See the included [LICENSE](LICENSE) file.
