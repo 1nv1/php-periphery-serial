@@ -16,6 +16,10 @@ library.
 This project really has two goal, the first is create a wrapper and the second
 is learn about php extensions. It's my first project around this.
 
+# Download
+
+You can download the compiled library in the [sourceforge](https://sourceforge.net/projects/php-periphery-serial/) page.
+
 # Build
 
 You need apply the following steps:
