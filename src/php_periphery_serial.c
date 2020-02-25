@@ -143,24 +143,9 @@ PHP_FUNCTION(periphery_serial_open)
     Z_PARAM_LONG(rtscts)
   ZEND_PARSE_PARAMETERS_END();
 
-  // Baudrate control
-  switch (baudrate)
-  {
-    case 1200:   break;
-    case 2400:   break;
-    case 4800:   break;
-    case 9600:   break;
-    case 19200:  break;
-    case 14400:  break;
-    case 38400:  break;
-    case 57600:  break;
-    case 115200: break;
-    default:     RETVAL_FALSE;
-  }
-
   if (strcmp(ZSTR_VAL(zparity), "none") == 0) { parity = PARITY_NONE; }
   else if (strcmp(ZSTR_VAL(zparity), "odd") == 0) { parity = PARITY_ODD; }
-  if (strcmp(ZSTR_VAL(zparity), "even") == 0) { parity = PARITY_EVEN; }
+  else if (strcmp(ZSTR_VAL(zparity), "even") == 0) { parity = PARITY_EVEN; }
 
   serial = periphery_serial_fetch_resource(zserial, return_value TSRMLS_CC);
 

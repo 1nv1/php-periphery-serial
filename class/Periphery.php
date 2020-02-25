@@ -40,7 +40,7 @@ class Serial {
 
   public function open($device, $baudrate = 9600, $databits = 8, $parity = "none", $stopbits = 1, $xonxoff = 0, $rtscts = 0)
   {
-    $br_ref = array(2400, 4800, 9600, 19200, 14400, 38400, 57600, 115200);
+    $bd_ref = array(50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 500000, 576000, 921600, 1000000, 1152000, 1500000, 2000000)
     if (!empty($device)) {
       $this->device = NULL;
       return FALSE;
