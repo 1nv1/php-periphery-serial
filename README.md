@@ -35,13 +35,31 @@ You can download the compiled library in the [sourceforge](https://sourceforge.n
 
 # Build
 
-You need apply the following steps:
+Previous, do you need install the developer package of ^PHP7x. In Fedora:
 
+``` sh
+# dnf install php-devel
 ```
-# phpize
-# ./configure --enable-periphery_serial
-# make
+
+Now, clone the repo:
+
+``` sh
+$ git clone --recurse-submodules -j8 https://github.com/1nv1/php-periphery-serial.git
+```
+
+To compile, you need to do these steps
+
+``` sh
+$ phpize
+$ ./configure --enable-periphery_serial
+$ make
 # make install
+```
+
+Do you need clean the project?
+
+``` sh
+$ make clean && phpize --clean
 ```
 
 # Example
