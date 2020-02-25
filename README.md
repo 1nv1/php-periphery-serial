@@ -40,10 +40,10 @@ This is a simple example:
 <?php
 
 // Class for use periphery-serial
-require_once dirname(__FILE__).$relative_path_to."Periphery.php";
+require_once dirname(__FILE__).$relative_path_to."/class/Periphery.php";
 
 // Create an instance
-$pb = new Periphery\Serial(); 
+$pb = new Periphery\Serial();
 
 // Yo can see the version of c-periphery embedded
 echo "Version: ".$pb->version().PHP_EOL;
