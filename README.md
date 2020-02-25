@@ -18,7 +18,8 @@ The last one was tested with real electronics hardware without problems.
 
 # Next steps
 
-- [ ] Build getters/setters
+- [x] Public attributes
+- [x] Testing arguments
 - [ ] Test again over real hardware (x86/x86_64)
 - [ ] Documentation of class
 - [ ] I will keep uploading compiled versions
