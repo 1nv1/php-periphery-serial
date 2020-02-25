@@ -16,6 +16,13 @@ Right now I uploaded to sourceforge two compilations of the extension. One is
 for x86_64 target system and the other was build on a x86.
 The last one was tested with real electronics hardware without problems.
 
+# Next steps
+
+- [ ] Build getters/setters
+- [ ] Test again over real hardware (x86/x86_64)
+- [ ] Documentation of class
+- [ ] I will keep uploading compiled versions
+
 # Download
 
 You can download the compiled library in the [sourceforge](https://sourceforge.net/projects/php-periphery-serial/) page.
