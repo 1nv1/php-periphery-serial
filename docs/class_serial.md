@@ -22,6 +22,8 @@ object->flush()
 object->input_waiting() --> <number> or <boolean>
 object->output_waiting() --> <number> or <boolean>
 object->close()
+object->version() --> <string>
+object->git_hash() --> <string>
 
 -- Properties
 object.baudrate     mutable <number>
@@ -115,6 +117,20 @@ Returns the number of bytes.
 object->close()
 ```
 Close the `tty` device.
+
+--------------------------------------------------------------------------------
+
+``` php
+object->version()
+```
+Returns the string with the version of c-periphery used for the compilation.
+
+--------------------------------------------------------------------------------
+
+``` php
+object->git_hash()
+```
+Returns the string with the git hash compiled.
 
 --------------------------------------------------------------------------------
 
