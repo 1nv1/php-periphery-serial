@@ -41,8 +41,12 @@ class Serial {
   public function open($device, $baudrate = 9600, $databits = 8, $parity = "none", $stopbits = 1, $xonxoff = 0, $rtscts = 0)
   {
     $br_ref = array(2400, 4800, 9600, 19200, 14400, 38400, 57600, 115200);
-    $this->device = $device;
-    if (!empty($this->device)) { return FALSE; }
+    if (!empty($device)) {
+      $this->device = NULL;
+      return FALSE;
+    } else {
+      $this->device = $device;
+    }
     if ($this->_testArray($baudrate, $br_ref) == TRUE)
     {
       $this->baudrate = $baudrate;
