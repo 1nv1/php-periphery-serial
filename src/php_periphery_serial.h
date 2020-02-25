@@ -13,6 +13,9 @@
 #define _STRINGIFY(x) #x
 #define STRINGIFY(x)  _STRINGIFY(x)
 
+#define PHP_PERIPHERY_SERIAL_GIT_HASH \
+  STRINGIFY(PHP_PERIPHERY_SERIAL_GIT_HASH_STR)
+
 #define PHP_PERIPHERY_SERIAL_VERSION \
   STRINGIFY(PERIPHERY_VERSION_MAJOR) "" \
   STRINGIFY(PERIPHERY_VERSION_MINOR) "" \
@@ -36,5 +39,6 @@ PHP_FUNCTION(periphery_serial_input_waiting);
 PHP_FUNCTION(periphery_serial_output_waiting);
 PHP_FUNCTION(periphery_serial_close);
 PHP_FUNCTION(periphery_serial_version);
+PHP_FUNCTION(periphery_serial_git_hash);
 
 #endif

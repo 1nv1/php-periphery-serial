@@ -150,4 +150,9 @@ class Serial {
     return periphery_serial_version();
   }
 
+  public function git_hash()
+  {
+    return periphery_serial_git_hash();
+  }
+
 }

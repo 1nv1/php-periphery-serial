@@ -25,6 +25,7 @@ zend_function_entry periphery_serial_functions[] = {
   PHP_FE(periphery_serial_output_waiting, NULL)
   PHP_FE(periphery_serial_close, NULL)
   PHP_FE(periphery_serial_version, NULL)
+  PHP_FE(periphery_serial_git_hash, NULL)
   PHP_FE_END
 };
 
@@ -366,4 +367,9 @@ PHP_FUNCTION(periphery_serial_close)
 PHP_FUNCTION(periphery_serial_version)
 {
   RETVAL_STRING(PHP_PERIPHERY_SERIAL_VERSION);
+}
+
+PHP_FUNCTION(periphery_serial_git_hash)
+{
+  RETVAL_STRING(PHP_PERIPHERY_SERIAL_GIT_HASH);
 }
