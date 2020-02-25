@@ -1,4 +1,4 @@
-# php-periphery-serial [![Build Status](https://travis-ci.org/1nv1/php-periphery.svg?branch=master)](https://travis-ci.org/vsergeev/c-periphery) [![GitHub release](https://img.shields.io/github/release/1nv1/php-periphery.svg?maxAge=7200)](https://img.shields.io/github/release/1nv1/php-periphery-serial.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/vsergeev/c-periphery/blob/master/LICENSE)
+# php-periphery-serial [![Build Status](https://travis-ci.org/1nv1/php-periphery.svg?branch=master)](https://travis-ci.org/vsergeev/c-periphery) [![GitHub release](https://img.shields.io/github/release/1nv1/php-periphery.svg?maxAge=7200)](https://img.shields.io/github/release/1nv1/php-periphery-serial/all.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/vsergeev/c-periphery/blob/master/LICENSE)
 
 A php extension for peripheral I/O Serial in GNU/Linux.
 
