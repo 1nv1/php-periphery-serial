@@ -7,9 +7,28 @@ class Serial {
   private $serial;
   private $res;
   private $device;
-  private $baudrate = 9600;
+  private $baudrate;
+  private $parity;
+  private $stopbits;
+  private $xonxoff;
+  private $rtscts;
   private $timeout_ms = 500;
   private $output;
+
+  private function _testRange($v, $va, $vb)
+  {
+    if (($v >= $va) && ($v <= $vb)) return TRUE;
+    else return FALSE;
+  }
+
+  private function _testArray($v, $r)
+  {
+    foreach($r as $b) {
+      if ($r == $v)
+        return TRUE;
+    }
+    return FALSE;
+  }
 
   public function __construct()
   {
@@ -18,12 +37,63 @@ class Serial {
     else { return FALSE; }
   }
 
-  public function open($device, $baudrate = 9600)
+  public function open($device, $baudrate = 9600, $databits = 8, $parity = "none", $stopbits = 1, $xonxoff = 0, $rtscts = 0)
   {
+    $br_ref = array(2400, 4800, 9600, 19200, 14400, 38400, 57600, 115200);
     $this->device = $device;
     if (!empty($this->device)) { return FALSE; }
-    $this->baudrate = $baudrate;
-    $this->res = periphery_serial_open($this->serial, $this->device, $this->baudrate);
+    if ($this->_testArray($baudrate, $br_ref) == TRUE)
+    {
+      $this->baudrate = $baudrate;
+    } else {
+      $this->baudrate = NULL;
+      return FALSE;
+    }
+    if ($this->_testRange($databits, 5, 8) == TRUE)
+    {
+      $this->databits = $databits;
+    } else {
+      $this->databits = NULL;
+      return FALSE;
+    }
+    if (($parity == "none") || ($parity == "odd") || ($parity == "even"))
+    {
+      $this->parity = $parity;
+    } else {
+      $this->parity = NULL;
+      return FALSE;
+    }
+    if (_testRange($stopbits, 1, 2) == TRUE)
+    {
+      $this->stopbits = $stopbits;
+    } else {
+      $this->stopbits = NULL;
+      return FALSE;
+    }
+    if ($this->_testRange($xonxoff, 0, 1) == TRUE)
+    {
+      $this->xonoff = $xonxoff;
+    } else {
+      $this->xonoff = NULL;
+      return FALSE;
+    }
+    if ($this->_testRange($rtscts, 0, 1) == TRUE)
+    {
+      $this->rtscts = $rtscts;
+    } else {
+      $this->rtscts = NULL;
+      return FALSE;
+    }
+    $this->res = periphery_serial_open(
+                                       $this->serial,
+                                       $this->device,
+                                       $this->baudrate,
+                                       $this->databits,
+                                       $this->parity,
+                                       $this->stopbits,
+                                       $this->xonxoff,
+                                       $this->rtscts
+                                      );
     return $this->res;
   }
 
