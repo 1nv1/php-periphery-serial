@@ -41,6 +41,12 @@ class Serial {
     return $this->output;
   }
 
+  public function poll($timeout_ms = 0)
+  {
+    $this->output = periphery_serial_poll($this->serial, $timeout_ms);
+    return $this->output;
+  }
+
   public function flush()
   {
     periphery_serial_flush($this->serial);
