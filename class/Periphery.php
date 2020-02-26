@@ -16,16 +16,16 @@ class Serial {
   public $xonxoff;
   public $rtscts;
 
-  private function _testRange($v, $va, $vb)
+  private function testRange($v, $va, $vb)
   {
     if (($v >= $va) && ($v <= $vb)) return TRUE;
     else return FALSE;
   }
 
-  private function _testArray($v, $r)
+  private function testArray($v, $r)
   {
     foreach($r as $b) {
-      if ($r == $v)
+      if ($b == $v)
         return TRUE;
     }
     return FALSE;
@@ -41,20 +41,20 @@ class Serial {
   public function open($device, $baudrate = 9600, $databits = 8, $parity = "none", $stopbits = 1, $xonxoff = 0, $rtscts = 0)
   {
     $bd_ref = array(50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 500000, 576000, 921600, 1000000, 1152000, 1500000, 2000000);
-    if (!empty($device)) {
+    if (empty($device)) {
       $this->device = NULL;
       return FALSE;
     } else {
       $this->device = $device;
     }
-    if ($this->_testArray($baudrate, $br_ref) == TRUE)
+    if ($this->testArray($baudrate, $bd_ref) == TRUE)
     {
       $this->baudrate = $baudrate;
     } else {
       $this->baudrate = NULL;
       return FALSE;
     }
-    if ($this->_testRange($databits, 5, 8) == TRUE)
+    if ($this->testRange($databits, 5, 8) == TRUE)
     {
       $this->databits = $databits;
     } else {
@@ -68,21 +68,21 @@ class Serial {
       $this->parity = NULL;
       return FALSE;
     }
-    if (_testRange($stopbits, 1, 2) == TRUE)
+    if ($this->testRange($stopbits, 1, 2) == TRUE)
     {
       $this->stopbits = $stopbits;
     } else {
       $this->stopbits = NULL;
       return FALSE;
     }
-    if ($this->_testRange($xonxoff, 0, 1) == TRUE)
+    if ($this->testRange($xonxoff, 0, 1) == TRUE)
     {
       $this->xonoff = $xonxoff;
     } else {
       $this->xonoff = NULL;
       return FALSE;
     }
-    if ($this->_testRange($rtscts, 0, 1) == TRUE)
+    if ($this->testRange($rtscts, 0, 1) == TRUE)
     {
       $this->rtscts = $rtscts;
     } else {
