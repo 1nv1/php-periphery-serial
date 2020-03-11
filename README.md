@@ -20,7 +20,7 @@ The last one was tested with real electronics hardware without problems.
 
 - [x] Public attributes
 - [x] Testing arguments
-- [ ] Test again over real hardware (x86/x86_64)
+- [x] Test again over real hardware (x86/x86_64)
 - [x] Documentation of class
 - [ ] I will keep uploading compiled versions
 - [ ] Errors support
